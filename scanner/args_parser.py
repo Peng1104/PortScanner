@@ -13,10 +13,10 @@ class IPType(Enum):
     """
     Enumeração para representar os tipos de endereços IP.
     """
-    IPv4 = "IPv4"
-    IPv6 = "IPv6"
+    IPV4 = "IPv4"
+    IPV6 = "IPv6"
     CIDR = "CIDR"
-    Invalid = "Invalid"
+    INVALID = "Invalid"
 
 
 def args_parser(args: Namespace) -> tuple[IPType, list[str], list[int], bool]:
@@ -32,7 +32,7 @@ def args_parser(args: Namespace) -> tuple[IPType, list[str], list[int], bool]:
     """
     ips, ip_type = __parse_ips(args.ip)
 
-    if ip_type == IPType.Invalid:
+    if ip_type == IPType.INVALID:
         print("Erro: Endereço IP inválido.")
         return ip_type, [], [], False
 
@@ -52,30 +52,30 @@ def args_parser(args: Namespace) -> tuple[IPType, list[str], list[int], bool]:
     return ip_type, ips, ports, args.udp
 
 
-def __parse_ips(input: str) -> tuple[list[str], IPType]:
+def __parse_ips(ip_input: str) -> tuple[list[str], IPType]:
     """
     Obtém uma lista de IPs a partir de uma entrada de IP ou range de IPs.
 
     Args:
-        input (str): O endereço IP ou range de IPs a ser processado.
+        ip_input (str): O endereço IP ou range de IPs a ser processado.
 
     Returns:
         tuple[list[str], IPType]: Uma tupla contendo uma lista de endereços IP e o tipo de IP.
                                   Retorna uma lista vazia se o IP for inválido.
     """
-    ip_type = __validate_ip(input)
+    ip_type = __validate_ip(ip_input)
 
     match ip_type:
-        case IPType.IPv4:
-            return [input], ip_type
-        case IPType.IPv6:
-            return [input], ip_type
+        case IPType.IPV4:
+            return [ip_input], ip_type
+        case IPType.IPV6:
+            return [ip_input], ip_type
         case IPType.CIDR:
             try:
-                return [str(ip) for ip in ip_network(input, strict=False)], ip_type
+                return [str(ip) for ip in ip_network(ip_input, strict=False)], ip_type
             except Exception:
-                return [], IPType.Invalid
-        case IPType.Invalid:
+                return [], IPType.INVALID
+        case IPType.INVALID:
             return [], ip_type
 
 
@@ -96,16 +96,16 @@ def __validate_ip(ip: str) -> IPType:
     try:
         # Verifica se é um IPv4
         inet_pton(AF_INET, ip)
-        return IPType.IPv4
+        return IPType.IPV4
     except error:
         pass
 
     try:
         # Verifica se é um IPv6
         inet_pton(AF_INET6, ip)
-        return IPType.IPv6
+        return IPType.IPV6
     except error:
-        return IPType.Invalid
+        return IPType.INVALID
 
 
 def __parse_ports(port_range: str) -> set[int]:

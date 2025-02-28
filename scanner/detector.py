@@ -19,7 +19,7 @@ def detect(args: Namespace) -> None:
     """
     ip_type, ips, ports, udp = args_parser(args)
 
-    if ip_type == IPType.Invalid:
+    if ip_type == IPType.INVALID:
         return
 
     if udp:
@@ -56,6 +56,7 @@ def detect(args: Namespace) -> None:
             print(
                 f"\nNo {ip} foi detectado o sistema operacional: {detect_os(os_response)}")
 
+
 def request_args() -> Namespace:
     """
     Analisa os argumentos da linha de comando fornecidos pelo usuário.
@@ -64,7 +65,7 @@ def request_args() -> Namespace:
         Namespace: Um objeto Namespace contendo os argumentos fornecidos pelo usuário.
     """
     parser = ArgumentParser(
-    description="Advanced TCP/UDP Port Scanner with OS & Service Detection")
+        description="Advanced TCP/UDP Port Scanner with OS & Service Detection")
 
     parser.add_argument(
         "ip", type=str, help="Target IP address, IPv6, or range (e.g., '192.168.1.1' or '192.168.1.0/24')")
