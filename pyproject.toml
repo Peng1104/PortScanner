@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel", "scapy"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "PortScanner"
+name = "TecHackPortScanner"
 description = "A simple package for scanning ports on a network."
 readme = "README.md"
 requires-python = ">= 3.9"
@@ -26,7 +26,7 @@ classifiers = [
 urls.changelog = "https://github.com/Peng1104/PortScanner/releases/latest"
 urls.issues = "https://github.com/Peng1104/PortScanner/issues"
 urls.source = "https://github.com/Peng1104/PortScanner"
-version = "1.0.0"
+version = "1.0.2"
 dependencies = [
   "scapy",
 ]
