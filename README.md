@@ -50,9 +50,12 @@ Este projeto é parte do curso TecHack da Insper. O objetivo deste roteiro é in
     python -m scanner <args>
     ```
 ### Exemplos de Uso
-
-
-
+    ```sh
+    python -m scanner 192.168.0.1
+    python -m scanner 192.168.1.1 -p 22,80,443
+    python -m scanner 192.168.1.1 -p 53,123 --udp
+    python -m scanner 192.168.1.0/24 --service ssh
+    ```
 ## Contribuição
 1. Faça um fork do projeto
 2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
