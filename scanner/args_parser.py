@@ -49,7 +49,7 @@ def args_parser(args: Namespace) -> tuple[IPType, list[str], list[int], bool]:
     else:
         ports = sorted(set(ports))
 
-    return ip_type, ips, ports, args.udp
+    return ip_type, ips, ports, hasattr(args, 'udp')
 
 
 def __parse_ips(ip_input: str) -> tuple[list[str], IPType]:
